@@ -1,0 +1,28 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "load balance the website using AWS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "omar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.8",
+    "morgan": "^1.9.1",
+    "process": "^0.11.10",
+    "pug": "^2.0.3",
+    "sentiment": "^5.0.1",
+    "socket.io": "^2.1.1",
+    "socket.io-redis": "^5.2.0",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0"
+  }
+}

@@ -1,0 +1,152 @@
+html,
+body {
+    min-height: 100%;
+    min-width: 100%;
+    margin: 0 auto;
+}
+
+#search-btn, #clear-btn, #stream-btn {
+    background: #00acee;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 0 5px 5px 0;
+    border: 0 none;
+    font-weight: bold;
+    position: relative;
+    margin-left: 5px;
+}
+
+#search-box {
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 0 none;
+    width: 400px;
+}
+
+#search-btn:hover, #clear-btn:hover, #stream-btn:hover {
+    background: #034780;
+    cursor: pointer;
+}
+
+#numOfTweets, #AvgSentiment {
+    font-family: 'Courier New';
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #034780;
+    display: none;
+}
+
+.search-bar {
+    position: fixed;
+    top: 5%;
+    left: 20%;
+}
+
+#floating-div {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#tableWrapper {
+    text-align: center;
+}
+
+#tweetsTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#tweetsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#tweetsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#tweetsTable tr:hover {
+    background-color: #ddd;
+}
+
+.scroll {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.spaces1 {
+    padding: 1cm;
+}
+
+.spaces2 {
+    padding: 0.5cm;
+}
+
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #00acee;
+    width: 120px;
+    height: 120px;
+    margin: 20vh auto;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+    display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#tweetsImgTable {
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
+
+td {
+    height: 75px;
+}
+
+#twitterIcon {
+    position: relative;
+    left: 2px;
+    top: 12px;
+    height: 35px;
+    width: 35px;
+}
+
+.circle {
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+}

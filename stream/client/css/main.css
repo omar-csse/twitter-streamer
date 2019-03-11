@@ -1,0 +1,15 @@
+#numOfTweets, #numOfTweetsMsg {
+    font-family: 'Courier New';
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #034780;
+}
+
+#numOfTweets {
+    font-size: 60px;
+}
+
+.spaces {
+    padding: 1cm;
+}

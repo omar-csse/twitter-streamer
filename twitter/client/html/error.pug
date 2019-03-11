@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        link(rel="shortcut icon" href="#")
+        link(rel='stylesheet', type='text/css', href='../css/error.css')
+    body
+        .error-page
+            div
+                - if (status == 400)
+                    h1#h1(data-h1='400') 400
+                    p#p(data-p='BAD REQUEST') BAD REQUEST
+                - else if (status == 401)
+                    h1#h1(data-h1='401') 401
+                    p#p(data-p='UNAUTHORIZED') UNAUTHORIZED
+                - else if (status == 403)
+                    h1#h1(data-h1='403') 403
+                    p#p(data-p='FORBIDDEN') FORBIDDEN
+                - else if (status == 404)
+                    h1#h1(data-h1="404") 404
+                    p#p(data-p="NOT FOUND") NOT FOUND
+                - else 
+                    h1#h1(data-h1='500') 500
+                    p#p(data-p='SERVER ERROR') SERVER ERROR
+                button#back-btn(onclick="window.location.assign('/')", type='button') Home

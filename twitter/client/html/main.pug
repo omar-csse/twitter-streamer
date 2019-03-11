@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        link(rel='shortcut icon', href='#')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        link(rel='stylesheet', href='../js/sweet-modal/min/jquery.sweet-modal.min.css')
+        script(src='../js/sweet-modal/min/jquery.sweet-modal.min.js')
+        link(rel='stylesheet', type='text/css', href='../css/main.css')
+        script(src='../js/main.js')
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Home | Tweets Search
+    body
+        section.search-bar
+            form#searchthis
+                input#search-box(size='40', type='text', name='search', placeholder='Search for tweets')
+                button#search-btn(type='button', onclick='searchBtnClicked();') Search
+                button#stream-btn(type='button', onclick='streamBtnClicked();') Stream the trend
+                button#clear-btn(type='button', onclick='clearTweets(0);') Clear
+                img#twitterIcon(src='https://cdn.freebiesupply.com/logos/large/2x/twitter-3-logo-png-transparent.png')
+        .spaces1
+        .spaces1
+        #loader
+        .spaces1
+        #numOfTweets 
+        .spaces2
+        #AvgSentiment
+        .spaces2
+        #tweets
+            table#tweetsTable
