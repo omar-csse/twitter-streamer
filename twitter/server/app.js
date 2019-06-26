@@ -3,9 +3,8 @@
     Also, join the server side with the static files using
     the express static built-in function.
 */
-require('dotenv').config({path:'../.env'});
+require('dotenv').config();
 const express = require('express');
-let morgan = require('morgan');
 const path = require('path');
 const app = express();
 let bodyParser = require('body-parser')
@@ -18,19 +17,15 @@ const TweetsConnection = require('../config/tweetsdb');
 const StreamConnection = require('../config/streamdb');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/')));
 
 /*
     Define the port and the local host. 
     Set pug as the view engine 
 */
-const port = 3000;
-const localhost = '127.0.0.1';
+const port = process.env.PORT || 3000;
 app.set('view engine', 'pug');
 
 /*
@@ -62,15 +57,14 @@ app.use((err, req, res, next) => {
 /*
     Create the server after connecting to mongodb
 */
-StreamConnection.connectToDB().then(() => {
-        
-    TweetsConnection.connectToDB();
+const main = async () => {
+    await StreamConnection.connectToDB();
+    await TweetsConnection.connectToDB();
+    server = await app.listen(port);
+    let io = await require('socket.io').listen(server);
+    await require('../models/channel').io(io);
+    await console.log('socket.io is connected');
+    return `🚀  Twitter sentiment analysis is on, and app is running on http://127.0.0.1:${port}/`   
+}
 
-    let server = app.listen(port, () => {
-        console.log(`listening to port: ${port} on http://${localhost}:${port}/`);
-    });
-
-    io = require('socket.io').listen(server);
-    require('../models/channel').io(io);
-    console.log('socket.io is connected');
-});
+main().then(console.log)

@@ -3,7 +3,7 @@
     Also, join the server side with the static files using
     the express static built-in function.
 */
-require('dotenv').config({path:'../.env'});
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 let app = express();
@@ -23,8 +23,7 @@ let stream = require('../models/stream');
     Define the port and the local host. 
     Set pug as the view engine 
 */
-const port = 3000;
-const localhost = '127.0.0.1';
+const port = process.env.PORT || 3000;
 app.set('view engine', 'pug');
 
 /*
@@ -36,12 +35,15 @@ app.use(require('../routes/main').router);
 /*
     Create the server after connecting to mongodb and strat streaming
 */
-Connection.connectToDB().then(() => {
-    let server = app.listen(port, () => {
-        console.log(`listening to port: ${port} on http://${localhost}:${port}/`);
-    });
-    let io = require('socket.io').listen(server);
-    require('../models/db').io(io);
-    console.log('socket.io is connected');
-    stream.stream();    
-});
+
+const main = async () => {
+    await Connection.connectToDB();
+    server = await app.listen(port);
+    let io = await require('socket.io').listen(server);
+    await require('../models/db').io(io);
+    await console.log('socket.io is connected');
+    await stream.stream();
+    return `🚀  Stream is on, and app is running on http://127.0.0.1:${port}/`   
+}
+
+main().then(console.log)

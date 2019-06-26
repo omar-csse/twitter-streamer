@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+
+    stream:
+        build: ./stream
+        volumes:
+            - ./stream:/app
+        ports: 
+            - 7001:3000
+    
+    twitter:
+        build: ./twitter
+        volumes:
+            - ./twitter:/app
+        ports: 
+            - 7002:3000
+        depends_on: 
+            - stream
