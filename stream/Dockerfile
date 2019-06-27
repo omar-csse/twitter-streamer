@@ -1,4 +1,5 @@
-FROM node:lts
+ARG NODE_VERSION
+FROM node:$NODE_VERSION
 LABEL 'maintainer'='omar' 
 WORKDIR /app
 COPY ./package*.json ./

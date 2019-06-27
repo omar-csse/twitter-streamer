@@ -3,9 +3,8 @@
     Also, join the server side with the static files using
     the express static built-in function.
 */
-require('dotenv').config();
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const app = express();
 let bodyParser = require('body-parser')
 const cors = require('cors');
@@ -58,6 +57,7 @@ app.use((err, req, res, next) => {
     Create the server after connecting to mongodb
 */
 const main = async () => {
+    await require('dotenv').config();
     await StreamConnection.connectToDB();
     await TweetsConnection.connectToDB();
     server = await app.listen(port);

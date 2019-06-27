@@ -3,17 +3,27 @@ version: '3'
 services: 
 
     stream:
-        build: ./stream
+        build: 
+            context: ./stream
+            dockerfile: Dockerfile
+            args: 
+                - NODE_VERSION=lts
         volumes:
             - ./stream:/app
         ports: 
             - 7001:3000
+        restart: always
     
     twitter:
-        build: ./twitter
+        build: 
+            context: ./twitter
+            dockerfile: Dockerfile
+            args: 
+                - NODE_VERSION=lts
         volumes:
             - ./twitter:/app
         ports: 
             - 7002:3000
         depends_on: 
             - stream
+        restart: always
