@@ -124,7 +124,6 @@ function showTweets(previousT, currentT) {
         } else {
             $(`tr#row${i}`).append(`<td><span class="circle" style="background-color:orange"></td>`);
         }
-        $(`tr#row${i}`).append(`<td style='color:blue;cursor:pointer;text-decoration:underline', onclick=repeatedLetters(${i})>Repeated letters</td>`);
     }
     $('#numOfTweets').html(`Number of tweets: ${currentT}`);
     $('#AvgSentiment').html(`Average sentiment: ${JSON.parse(sessionStorage.avgTweetsSentiment)/currentT}`);
@@ -135,30 +134,6 @@ function showTweets(previousT, currentT) {
     $("#search-btn").prop("disabled", false);
     $('#search-btn').css({'cursor':'', 'background': ''});
     $('#loader').hide();
-}
-
-/*
-    Show the repeated letters in all words in pop-up model
-*/
-function repeatedLetters(i) {
-
-    let tweets = JSON.parse(sessionStorage.tweets);
-    repeated = tweets[i].repeated;
-    let dom = '<p>Words with the most repeated letters: ';
-    for (let j = 0; j < repeated.length; j++) {
-        dom = dom.concat(`${repeated[j]}, `);
-    }
-    dom.concat('</p>')
-
-    $.sweetModal({
-        height: 'min-height',
-        width: '400px',
-        content: dom,
-        buttons: [{
-            label: 'Close',
-            classes: 'blueB'
-        }]
-    });
 }
 
 /*
@@ -236,7 +211,7 @@ let storeTweets = async (newTweets) => {
 /*
     initialize the storage if it's empty
 */
-initStorage() {
+function initStorage() {
     if (!sessionStorage.currentNumberOfTweets) {
         sessionStorage.setItem('currentNumberOfTweets', JSON.stringify(0));
     }

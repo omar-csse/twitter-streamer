@@ -8,20 +8,14 @@ body {
 #search-btn, #clear-btn, #stream-btn {
     background: #00acee;
     color: white;
-    padding: 10px 25px;
     border-radius: 0 5px 5px 0;
     border: 0 none;
-    font-weight: bold;
-    position: relative;
-    margin-left: 5px;
 }
 
 #search-box {
     background: #eee;
-    padding: 10px;
     border-radius: 5px 0 0 5px;
     border: 0 none;
-    width: 400px;
 }
 
 #search-btn:hover, #clear-btn:hover, #stream-btn:hover {
@@ -38,32 +32,8 @@ body {
     display: none;
 }
 
-.search-bar {
-    position: fixed;
-    top: 5%;
-    left: 20%;
-}
-
-#floating-div {
-    width: 100%;
-    margin: 0 auto;
-}
-
-#tableWrapper {
-    text-align: center;
-}
-
-#tweetsTable {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 70%;
-    margin: 0 auto;
-    text-align: left;
-}
-
 #tweetsTable td {
     border: 1px solid #ddd;
-    padding: 8px;
 }
 
 #tweetsTable tr:nth-child(even) {
@@ -72,12 +42,7 @@ body {
 
 #tweetsTable tr:hover {
     background-color: #ddd;
-}
-
-.scroll {
-    max-height: 400px;
-    overflow: auto;
-}
+} 
 
 .spaces1 {
     padding: 1cm;
@@ -131,14 +96,7 @@ img {
     height: 150px;
 }
 
-td {
-    height: 75px;
-}
-
 #twitterIcon {
-    position: relative;
-    left: 2px;
-    top: 12px;
     height: 35px;
     width: 35px;
 }
