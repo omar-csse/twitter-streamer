@@ -236,7 +236,7 @@ let storeTweets = async (newTweets) => {
 /*
     initialize the storage if it's empty
 */
-function initStorage() {
+initStorage() {
     if (!sessionStorage.currentNumberOfTweets) {
         sessionStorage.setItem('currentNumberOfTweets', JSON.stringify(0));
     }
