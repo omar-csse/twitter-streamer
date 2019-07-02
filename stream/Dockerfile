@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM node:$NODE_VERSION
+FROM node:lts
 LABEL 'maintainer'='omar' 
 WORKDIR /app
 COPY ./package*.json ./
