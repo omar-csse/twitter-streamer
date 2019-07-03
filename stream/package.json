@@ -12,11 +12,11 @@
     "author": "omar",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.16.4",
-        "mongodb": "^3.1.8",
+        "express": "^4.17.1",
+        "mongodb": "^3.2.7",
         "path": "^0.12.7",
-        "pug": "^2.0.3",
-        "socket.io": "^2.1.1",
+        "pug": "^2.0.4",
+        "socket.io": "^2.2.0",
         "twit": "^2.2.11"
     },
     "devDependencies": {
