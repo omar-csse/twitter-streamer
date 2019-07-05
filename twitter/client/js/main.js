@@ -87,18 +87,6 @@ function streamBtnClicked() {
 }
 
 /*
-    pop-up model for images
-*/
-function imgClicked(i, n) {
-    let tweets = JSON.parse(sessionStorage.tweets);
-    $.sweetModal({
-        width: '850px',
-        height: '550px',
-        content: `<img style="width:750px;height:450px;" src="${tweets[i].img[n]}">`
-    });
-}
-
-/*
     show the tweets on DOM
 */
 function showTweets(previousT, currentT) {
@@ -107,16 +95,7 @@ function showTweets(previousT, currentT) {
         let avgTweetsSentiment = JSON.parse(sessionStorage.avgTweetsSentiment);
         avgTweetsSentiment += tweets[i].sentiment;
         sessionStorage.setItem('avgTweetsSentiment', JSON.stringify(avgTweetsSentiment));
-        if (tweets[i].hasOwnProperty('img')) {
-            $('#tweetsTable').prepend(`<tr id=row${i}><td id=tweet${i}>${tweets[i].text}<br>`);
-            $(`#tweet${i}`).append('<table id="tweetsImgTable"><tr>')
-            for (let n = 0; n < tweets[i].img.length; n++) {
-                $(`#tweet${i} #tweetsImgTable`).append(`<td><a href="javascript:imgClicked(${i}, ${n})"><img src="${tweets[i].img[n]}"></a></td>`);
-            }
-            $(`#tweet${i}`).append('</tr></table></td></tr>');
-        } else {
-            $('#tweetsTable').prepend(`<tr id=row${i}><td id=tweet${i}>${tweets[i].text}</td></tr>`);
-        }
+        $('#tweetsTable').prepend(`<tr id=row${i}><td id=tweet${i}>${tweets[i].text}</td></tr>`);
         if (tweets[i].sentiment > 0) {
             $(`tr#row${i}`).append(`<td><span class="circle" style="background-color:green"></td>`);
         } else if (tweets[i].sentiment < 0) {
