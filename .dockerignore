@@ -1,4 +1,5 @@
-*/npm-debug.log
-.gitignore
-*/node_modules
-*/.env
+**/*/npm-debug.log*
+**/*/.gitignore*
+**/*/node_modules*
+**/*.git*
+**/*.cache*
