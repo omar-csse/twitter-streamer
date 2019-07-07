@@ -27,7 +27,7 @@ let stream = require('../models/stream');
     Define the port and the local host. 
     Set pug as the view engine 
 */
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 app.set('view engine', 'pug');
 
 /*

@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '../client/')));
     Define the port and the local host. 
     Set pug as the view engine 
 */
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3020;
 app.set('view engine', 'pug');
 
 /*

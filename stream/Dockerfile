@@ -5,5 +5,5 @@ WORKDIR /app
 COPY ./package*.json ./
 RUN npm install --only=production
 COPY . /app
-EXPOSE 3000
+EXPOSE 3030
 CMD [ "npm", "run-script", "build" ]
