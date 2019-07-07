@@ -3,6 +3,7 @@
     Also, join the server side with the static files using
     the express static built-in function.
 */
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -14,6 +15,12 @@ const cors = require('cors');
 */
 const TweetsConnection = require('../config/tweetsdb');
 const StreamConnection = require('../config/streamdb');
+
+/*
+    Streaming
+*/
+const stream = require('../models/channel');
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -57,12 +64,12 @@ app.use((err, req, res, next) => {
     Create the server after connecting to mongodb
 */
 const main = async () => {
-    await require('dotenv').config();
     await StreamConnection.connectToDB();
     await TweetsConnection.connectToDB();
     server = await app.listen(port);
     let io = await require('socket.io').listen(server);
     await require('../models/channel').io(io);
+    await stream.startStreaming(io);
     await console.log('socket.io is connected');
     return `🚀  Twitter sentiment analysis is on, and app is running on http://127.0.0.1:${port}/`   
 }

@@ -22,24 +22,33 @@ let io = (io) => {
     ioInstcance.adapter(redis({host: redisConfig.host, port: redisConfig.port, auth_pass: redisConfig.pass}));
 
     io.on('connection', (socket) => { 
+
         socket.on('subscribe', (data) => {
             console.log(`client with socket id: ${socket.id} subscribed to ${data.channel} channel`);
             subscribe(data.channel);
             socket.join(data.channel);  
         });
+        
         socket.on('unsubscribe', (data) => {
             console.log(`client with socket id: ${socket.id} unsubscribed from ${data.channel} channel`);
             socket.leave(data.channel);
         });
+
         socket.on('stream', (data) => {
             if (!(JSON.parse(data.streamON))) {
-                startStream(socket);
+                socket.join('streaming');
             }
         });
+
+        socket.on('unstream', () => {
+            socket.leave('streaming');
+        });
+
         socket.on('disconnect', () => {
             console.log(`client with socket id: ${socket.id} disconnected`);
             socket.conn.close();
         });
+
     });
 };
 
@@ -53,37 +62,35 @@ let subscribe = (channel) => {
     });
 }
 
-let startStream = (socket) => { 
+let startStreaming = (io) => { 
+
     let allTweets = [];
+
     let stream = StreamConnection.db
         .collection('stream')
         .find({})
         .stream()
+
     stream.on('data', (data) => {
         allTweets = [];
         tweets.analyzeStream(data.tweet).then((analyzedTweet) => {
             allTweets.push(analyzedTweet);
         });
     });
+
     stream.on('error', (err) => {
         console.log(err);
     });
-    socket.on('unstream', () => {
-        stream.destroy();
-        clearInterval(streamInterval);
-    });
-    socket.on('disconnect', () => {
-        stream.destroy();
-        clearInterval(streamInterval);
-    });
+
     let streamInterval = setInterval(() =>{
         var nextTweet = allTweets.shift();
         if (nextTweet) {
-            socket.emit('stream', {tweet: nextTweet});
+            io.to('streaming').emit('stream', {tweet: nextTweet});
         }
     }, 100);
 }
 
 let self = module.exports = {
     io: io,
+    startStreaming: startStreaming,
 }
