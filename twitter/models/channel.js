@@ -9,9 +9,10 @@
 
 let db = require('./db');
 let tweets = require('./tweets');
-let StreamConnection = require('../config/streamdb');
+let T = require('../config/twitter');
 let redis = require('socket.io-redis');
 let redisConfig = require('../config/redis');
+let alphabet = new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 97 + i ) );
 
 let ioInstcance;
 
@@ -64,30 +65,15 @@ let subscribe = (channel) => {
 
 let startStreaming = (io) => { 
 
-    let allTweets = [];
+    let stream = T.stream('statuses/filter', { track: alphabet, language: 'en'});
 
-    let stream = StreamConnection.db
-        .collection('stream')
-        .find({})
-        .stream()
-
-    stream.on('data', (data) => {
-        allTweets = [];
-        tweets.analyzeStream(data.tweet).then((analyzedTweet) => {
-            allTweets.push(analyzedTweet);
-        });
+    stream.on('tweet', (tweet) => {
+        tweets.analyzeStream(tweet.text).then(tweet => io.to('streaming').emit('stream', {tweet: tweet}));
     });
 
     stream.on('error', (err) => {
         console.log(err);
     });
-
-    let streamInterval = setInterval(() =>{
-        var nextTweet = allTweets.shift();
-        if (nextTweet) {
-            io.to('streaming').emit('stream', {tweet: nextTweet});
-        }
-    }, 100);
 }
 
 let self = module.exports = {
