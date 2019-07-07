@@ -65,15 +65,23 @@ let subscribe = (channel) => {
 
 let startStreaming = (io) => { 
 
+    let allTweets = [];
     let stream = T.stream('statuses/filter', { track: alphabet, language: 'en'});
 
     stream.on('tweet', (tweet) => {
-        tweets.analyzeStream(tweet.text).then(tweet => io.to('streaming').emit('stream', {tweet: tweet}));
+        tweets.analyzeStream(tweet.text).then(tweet => allTweets.push(tweet));
     });
 
     stream.on('error', (err) => {
         console.log(err);
     });
+
+    let streamInterval = setInterval(() =>{		
+        var nextTweet = allTweets.shift();		
+        if (nextTweet) {		
+            io.to('streaming').emit('stream', {tweet: nextTweet});		
+        }		
+    }, 100);
 }
 
 let self = module.exports = {
