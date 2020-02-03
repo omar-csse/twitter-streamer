@@ -7,7 +7,7 @@ const MongoClient = require('mongodb').MongoClient
 class TweetsConnection {
     static async connectToDB() {
         await initTwitterDB();
-        return await MongoClient.connect(this.url, {useNewUrlParser: true}, this.options)
+        return await MongoClient.connect(this.url, {useNewUrlParser:true, useUnifiedTopology:true }, this.options)
             .then(client => {this.db = client.db('tweets')})
             .then(() => console.log('tweets DB in tweets cluster is connected'))
             .catch(err => console.log(err));

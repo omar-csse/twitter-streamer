@@ -7,7 +7,7 @@ const MongoClient = require('mongodb').MongoClient
 class StreamConnection {
     static async connectToDB() {
         await initStreamDB();
-        return await MongoClient.connect(this.url, {useNewUrlParser: true}, this.options)
+        return await MongoClient.connect(this.url, {useNewUrlParser: true,useUnifiedTopology: true}, this.options)
             .then(client => { this.db = client.db('stream')})
             .then(() => console.log('stream DB in stream cluster is connected'))
             .catch(err => console.log(err));

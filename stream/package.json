@@ -1,5 +1,5 @@
 {
-    "name": "stream",
+    "name": "stream-twitter",
     "version": "1.0.0",
     "private": true,
     "description": "",
@@ -12,6 +12,7 @@
     "author": "omar",
     "license": "ISC",
     "dependencies": {
+        "core-js": "3",
         "express": "^4.17.1",
         "mongodb": "^3.2.7",
         "path": "^0.12.7",

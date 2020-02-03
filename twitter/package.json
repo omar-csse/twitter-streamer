@@ -1,5 +1,5 @@
 {
-    "name": "twitter",
+    "name": "twitter-twitter",
     "version": "1.0.0",
     "private": true,
     "description": "load balance the website using AWS",
