@@ -3,6 +3,7 @@
     Also, join the server side with the static files using
     the express static built-in function.
 */
+require('dotenv').config()
 const path = require('path');
 const express = require('express');
 let app = express();
@@ -41,14 +42,12 @@ app.use(require('../routes/main').router);
 */
 
 const main = async () => {
-    await require('dotenv').config();
     await StreamConnection.connectToDB();
-    server = await app.listen(port);
-    let io = await require('socket.io').listen(server);
-    await require('../models/db').io(io);
-    await console.log('socket.io is connected');
-    await twitter.configTwitterAPI();
-    await stream.stream();
+    const server = app.listen(port);
+    let io = require('socket.io').listen(server);
+    require('../models/db').io(io);
+    console.log('socket.io is connected');
+    stream.stream();
     return `🚀  Stream is on, and app is running on http://127.0.0.1:${port}/`   
 }
 
