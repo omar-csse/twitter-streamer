@@ -66,11 +66,11 @@ app.use((err, req, res, next) => {
 const main = async () => {
     await StreamConnection.connectToDB();
     await TweetsConnection.connectToDB();
-    server = await app.listen(port);
-    let io = await require('socket.io').listen(server);
-    await require('../models/channel').io(io);
-    await stream.startStreaming(io);
-    await console.log('socket.io is connected');
+    const server = app.listen(port);
+    let io = require('socket.io').listen(server);
+    require('../models/channel').io(io);
+    stream.startStreaming(io);
+    console.log('socket.io is connected');
     return `🚀  Twitter sentiment analysis is on, and app is running on http://127.0.0.1:${port}/`   
 }
 
