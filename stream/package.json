@@ -14,6 +14,7 @@
     "dependencies": {
         "core-js": "3",
         "express": "^4.17.1",
+        "helmet": "^3.21.3",
         "mongodb": "^3.5.2",
         "path": "^0.12.7",
         "pug": "^2.0.4",

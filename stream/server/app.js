@@ -6,7 +6,10 @@
 require('dotenv').config()
 const path = require('path');
 const express = require('express');
-let app = express();
+const app = express();
+const helmet = require('helmet')
+
+app.use(helmet())
 
 /* 
     mongodb config

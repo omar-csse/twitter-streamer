@@ -7,8 +7,9 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const app = express();
-let bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const cors = require('cors');
+const helmet = require('helmet')
 
 /* 
     mongodb config
@@ -23,6 +24,7 @@ const stream = require('../models/channel');
 
 
 app.use(cors());
+app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../client/')));
