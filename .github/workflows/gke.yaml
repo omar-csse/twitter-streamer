@@ -13,7 +13,7 @@ env:
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
   GKE_ZONE: ${{ secrets.GKE_ZONE }}
   IMAGE: ${{ secrets.DEPLOYMENT_NAME }}
-  IMAGE_TAG: 1.0
+  IMAGE_TAG: "1.0"
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
 
