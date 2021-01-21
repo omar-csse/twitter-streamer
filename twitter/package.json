@@ -21,7 +21,7 @@
         "process": "^0.11.10",
         "pug": "^2.0.4",
         "sentiment": "^5.0.2",
-        "socket.io": "^2.3.0",
+        "socket.io": "^2.4.0",
         "socket.io-redis": "^5.2.0",
         "twit": "^2.2.11"
     },
