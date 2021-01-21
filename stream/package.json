@@ -18,7 +18,7 @@
         "mongodb": "^3.5.2",
         "path": "^0.12.7",
         "pug": "^2.0.4",
-        "socket.io": "^2.3.0",
+        "socket.io": "^2.4.0",
         "twit": "^2.2.11"
     },
     "devDependencies": {
