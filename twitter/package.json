@@ -19,7 +19,7 @@
         "mongodb": "^3.5.2",
         "morgan": "^1.9.1",
         "process": "^0.11.10",
-        "pug": "^2.0.4",
+        "pug": "^3.0.1",
         "sentiment": "^5.0.2",
         "socket.io": "^2.3.0",
         "socket.io-redis": "^5.2.0",
